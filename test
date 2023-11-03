@@ -1,0 +1,39 @@
+/*
+let cam;
+let x = 0;
+
+function setup() {
+  createCanvas(640, 480);
+  cam = createCapture(VIDEO);
+  cam.hide();
+}
+
+function draw() {
+  //background(220);
+  //image(cam,0,0);
+  copy(cam, 315, 0, 20, height, x, 0, 20, height);
+  x++;
+  x %= width;
+  rect(315, 0, 20, height);
+}
+*/
+
+let cam;
+let cache = [];
+
+function setup() {
+  createCanvas(640, 240);
+  cam = createCapture(VIDEO);
+  cam.size(320,240);
+  cam.hide();
+  frameRate(30);
+}
+
+function draw() {
+  background(220);
+  image(cam,0,0);
+  cache.push(cam.get());
+  if (cache.length>120)cache.splice(0,1);
+  image(cache[0],width/2,0)
+
+}
